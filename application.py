@@ -23,11 +23,9 @@ def load_user(id):
     return User.query.get(int(id))
 
 socketio = SocketIO(app, manage_session=False)
-
-# Predefined rooms for chat
 ROOMS = ["general", "test"]
 
-
+# Routes
 @app.route("/", methods=['GET', 'POST'])
 def index():
     reg_form = RegistrationForm()
@@ -97,6 +95,3 @@ def on_leave(data):
     room = data['room']
     leave_room(room)
     send({"msg": username + " has left the room"}, room=room)
-
-if __name__ == "__main__":
-    app.run(debug=True)

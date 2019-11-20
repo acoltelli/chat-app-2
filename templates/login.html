@@ -2,7 +2,7 @@
 {% extends "prelogin-layout.html" %}
 {% block title %}Login {% endblock %}
 {% block content %}
-    <h2>Login now!</h2>
+    <h2>Login</h2>
     <form action="{{ url_for('login') }}", method="POST">
         {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
         {{ displayField(form.password, 'Password') }}
