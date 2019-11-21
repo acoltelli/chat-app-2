@@ -33,7 +33,6 @@ def index():
     if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
-        # Hash password
         password_hash = pbkdf2_sha256.hash(password)
         user = User(username=username, password=password_hash)
         db.session.add(user)
@@ -41,6 +40,23 @@ def index():
         flash('Registered successfully. Please login.', 'success')
         return redirect(url_for('login'))
     return render_template("index.html", form=reg_form)
+
+
+@app.route("/home", methods=['GET', 'POST'])
+def home():
+    if not current_user.is_authenticated:
+        flash('Please login', 'danger')
+        return redirect(url_for('login'))
+    form = CreateChannel()
+    if form.validate_on_submit():
+        if form.room.data not in ROOMS:
+            ROOMS.append(form.room.data)
+            return redirect(url_for('.chat'))
+        flash('That channel already exists', 'danger')
+
+
+    return render_template("home.html", username=current_user.username, rooms=ROOMS)
+
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -53,18 +69,18 @@ def login():
     return render_template("login.html", form=login_form)
 
 
-@app.route("/logout", methods=['GET'])
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
-
-
 @app.route("/chat", methods=['GET', 'POST'])
 def chat():
     if not current_user.is_authenticated:
         flash('Please login', 'danger')
         return redirect(url_for('login'))
     return render_template("chat.html", username=current_user.username, rooms=ROOMS)
+
+
+@app.route("/logout", methods=['GET'])
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 
 @app.errorhandler(404)
