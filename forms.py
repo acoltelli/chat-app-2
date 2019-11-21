@@ -30,5 +30,5 @@ class LoginForm(FlaskForm):
     password = PasswordField('password', validators=[InputRequired(message="Password required"), invalid_credentials])
 
 class CreateChannel(Form):
-    room = StringField('Create new channel', validators=[Required()])
+    room = StringField('Create a new channel', validators=[Required()])
     submit = SubmitField('Enter')

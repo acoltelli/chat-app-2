@@ -2,6 +2,11 @@
     display: flex;
 }
 
+#home-main-section {
+    margin-top: 63px;
+    padding-left: 160px;
+}
+
 #main-section {
     width: 100%;
 }
@@ -22,7 +27,7 @@
 }
 
 #sidebar p:hover {
-    background-color: #ffc107;
+    background-color: #83B1FF;
 }
 
 #sidebar h4 {
@@ -60,10 +65,6 @@
     cursor: pointer;
 }
 
-.createChannelForm{
-  padding-top: 10%;
-  padding-left: 3px;
-}
 
 #rightside-pannel {
     overflow: hidden;
@@ -87,7 +88,7 @@
 }
 
 input[type=text]:focus{
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 1px #ffc107;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 @keyframes fadeIn {
@@ -150,7 +151,6 @@ input[type=text]:focus{
 }
 
 #msg-input {
-    border-color: #ffc107;
     border-width: 5px;
 }
 

@@ -15,6 +15,11 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
     <body>
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              <p class=formError>{{ messages[0] }}</p>
+          {% endif %}
+      {% endwith %}
         <div class="wrapper">
             <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top" style="background-color: #66a1ee">
                 <div class="container-fluid">
@@ -41,6 +46,8 @@
                         <p id="{{ room|title }}" class="select-room cursor-pointer">{{ room|title }}</p>
                     {% endfor %}
                 </nav>
+                <div id="home-main-section">
+                <h4>Welcome, {{ username }}! </h4>
                 <div class="createChannelForm" id="rightside-pannel">
                   <form method="POST">
                       {{ form.hidden_tag() }}
@@ -51,6 +58,7 @@
                       {{ form.submit(class="btn btn-sm btn-outline-secondary") }}
                   </form>
                 </div>
+              </div>
             </div>
         </div>
         <span id="get-username">{{ username }}</span>
