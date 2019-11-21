@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 //Append
                 document.querySelector('#display-message-section').append(p);
             }
-            // Display system message
             else {
                 printSysMsg(data.msg);
             }
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Trigger 'join' event
+
     function joinRoom(room) {
         socket.emit('join', {'username': username, 'room': room});
         // Highlight selected room
@@ -94,13 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector("#user_message").focus();
     }
 
-    // Scroll chat window down
+
     function scrollDownChatWindow() {
         const chatWindow = document.querySelector("#display-message-section");
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
 
-    // Print system messages
+
     function printSysMsg(msg) {
         const p = document.createElement('p');
         p.setAttribute("class", "system-msg");

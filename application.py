@@ -54,10 +54,7 @@ def home():
                 ROOMS.append(form.room.data)
                 return redirect(url_for('chat'))
             flash('That channel already exists', 'danger')
-
-
     return render_template("home.html", form=form, username=current_user.username, rooms=ROOMS)
-
 
 
 @app.route("/login", methods=['GET', 'POST'])
