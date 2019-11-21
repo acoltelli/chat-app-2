@@ -28,6 +28,8 @@ ROOMS = ["general", "test"]
 # Routes
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -51,6 +53,7 @@ def home():
         if form.validate_on_submit():
             if form.room.data not in ROOMS:
                 ROOMS.append(form.room.data)
+                return redirect(url_for('home'))
             else:
                 flash('That channel already exists', 'danger')
     return render_template("home.html", form=form, username=current_user.username, rooms=ROOMS)
@@ -58,12 +61,16 @@ def home():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user_object = User.query.filter_by(username=login_form.username.data).first()
         login_user(user_object)
         return redirect(url_for('chat'))
     return render_template("login.html", form=login_form)
+
+
+
 
 
 @app.route("/chat", methods=['GET', 'POST'])

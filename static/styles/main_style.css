@@ -1,7 +1,3 @@
-h1 {
-    color: #206ED2;
-}
-
 #main-section {
     width: 100vw;
 }
@@ -26,11 +22,13 @@ h1 {
 .alertWrapper{
   padding-top: 1em;
   padding-left: 1em;
+  margin-top: 4em;
   margin-bottom: -2em;
 }
 
 .wrapper {
     display: flex;
+    flex-direction: column;
 }
 
 h2 {
