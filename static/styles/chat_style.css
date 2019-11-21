@@ -1,22 +1,13 @@
-.wrapper {
-    display: flex;
-}
-
 #home-main-section {
-    margin-top: 63px;
-    padding-left: 160px;
-}
+    padding-top: 5em;
 
-#main-section {
-    width: 100%;
 }
 
 #sidebar {
-    margin-top: 2em;
     float: left;
     min-height: 96vh;
     padding-left: 1em;
-    padding-top: 3em;
+    padding-top: 4em;
     padding-right:1em;
     border-right: 0.5px solid #898c91;
 }

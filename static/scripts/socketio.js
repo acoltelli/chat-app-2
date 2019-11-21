@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
     const username = document.querySelector('#get-username').innerHTML;
+    // Default room
     let room = "General"
     joinRoom("General");
 
@@ -18,32 +19,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const span_username = document.createElement('span');
             const span_timestamp = document.createElement('span');
             const br = document.createElement('br')
-            // Display user's own message
+            // Display user's msg
             if (data.username == username) {
                     p.setAttribute("class", "my-msg");
-                    // Username
                     span_username.setAttribute("class", "my-username");
                     span_username.innerText = data.username;
-                    // Timestamp
                     span_timestamp.setAttribute("class", "timestamp");
                     span_timestamp.innerText = data.time_stamp;
-                    // HTML to append
                     p.innerHTML += span_username.outerHTML + br.outerHTML + data.msg + br.outerHTML + span_timestamp.outerHTML
-                    //Append
                     document.querySelector('#display-message-section').append(p);
             }
-            // Display other users' messages
+            // Display other's msg
             else if (typeof data.username !== 'undefined') {
                 p.setAttribute("class", "others-msg");
-                // Username
                 span_username.setAttribute("class", "other-username");
                 span_username.innerText = data.username;
-                // Timestamp
                 span_timestamp.setAttribute("class", "timestamp");
                 span_timestamp.innerText = data.time_stamp;
-                // HTML to append
                 p.innerHTML += span_username.outerHTML + br.outerHTML + data.msg + br.outerHTML + span_timestamp.outerHTML;
-                //Append
                 document.querySelector('#display-message-section').append(p);
             }
             else {
@@ -69,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // Logout from chat
+    // Logout user
     document.querySelector("#logout-btn").onclick = () => {
         leaveRoom(room);
     };
 
-    // Trigger 'leave' event if user was previously on a room
+    // Trigger leave event from room
     function leaveRoom(room) {
         socket.emit('leave', {'username': username, 'room': room});
         document.querySelectorAll('.select-room').forEach(p => {
@@ -82,10 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     function joinRoom(room) {
         socket.emit('join', {'username': username, 'room': room});
-        // Highlight selected room
         document.querySelector('#' + CSS.escape(room)).style.color = "#83B1FF";
         document.querySelector('#' + CSS.escape(room)).style.backgroundColor = "white";
         // Clear message area
@@ -94,12 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector("#user_message").focus();
     }
 
-
     function scrollDownChatWindow() {
         const chatWindow = document.querySelector("#display-message-section");
         chatWindow.scrollTop = chatWindow.scrollHeight;
     }
-
 
     function printSysMsg(msg) {
         const p = document.createElement('p');
@@ -107,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
         p.innerHTML = msg;
         document.querySelector('#display-message-section').append(p);
         scrollDownChatWindow()
-        // Autofocus on text box
         document.querySelector("#user_message").focus();
     }
 });

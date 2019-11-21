@@ -2,6 +2,7 @@
 {% extends "layout.html" %}
 {% block title %}Login {% endblock %}
 {% block content %}
+<div class='authWrapper'>
     <h5>Login</h5>
     <form action="{{ url_for('login') }}", method="POST">
         {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
@@ -13,4 +14,5 @@
     </form>
     <hr>
     <p>Haven't registered yet? <a href={{url_for('index')}}>Register here</a>.</p>
+    </div>
 {% endblock %}

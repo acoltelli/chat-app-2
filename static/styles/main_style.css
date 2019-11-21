@@ -3,7 +3,7 @@ h1 {
 }
 
 #main-section {
-    width: 100%;
+    width: 100vw;
 }
 
 .card {
@@ -17,6 +17,20 @@ h1 {
 
 #righthand-side {
     padding: 3em;
+}
+
+.authWrapper{
+  padding: 3em;
+}
+
+.alertWrapper{
+  padding-top: 1em;
+  padding-left: 1em;
+  margin-bottom: -2em;
+}
+
+.wrapper {
+    display: flex;
 }
 
 h2 {

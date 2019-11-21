@@ -28,18 +28,17 @@ ROOMS = ["general", "test"]
 # Routes
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    reg_form = RegistrationForm()
-    # Update database if validation success
-    if reg_form.validate_on_submit():
-        username = reg_form.username.data
-        password = reg_form.password.data
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
         password_hash = pbkdf2_sha256.hash(password)
         user = User(username=username, password=password_hash)
         db.session.add(user)
         db.session.commit()
         flash('Registered successfully. Please login.', 'success')
         return redirect(url_for('login'))
-    return render_template("index.html", form=reg_form)
+    return render_template("index.html", form=form)
 
 
 @app.route("/home", methods=['GET', 'POST'])
@@ -52,8 +51,8 @@ def home():
         if form.validate_on_submit():
             if form.room.data not in ROOMS:
                 ROOMS.append(form.room.data)
-                return redirect(url_for('chat'))
-            flash('That channel already exists', 'danger')
+            else:
+                flash('That channel already exists', 'danger')
     return render_template("home.html", form=form, username=current_user.username, rooms=ROOMS)
 
 
