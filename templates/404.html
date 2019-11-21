@@ -2,10 +2,10 @@
 {% extends "layout.html" %}
 {% block title %}404 Not Found {% endblock %}
 {% block content %}
-    <h4>Sorry, the page you are looking for does not exist!</h4>
+    <h4>Sorry, that page does not exist!</h4>
       <br/>
-      <h3>Go to <a href={{url_for('login')}}>login page</a> to start chating.</h3>
+      <h4><a href={{url_for('login')}}>Login</a> to start chatting.</h4>
       <br/>
     <hr>
-    <p>Have'nt registered? <a href={{url_for('index')}}>Register here</a>.</p>
+    <p>Haven't registered yet? <a href={{url_for('index')}}>Register here</a>.</p>
 {% endblock %}

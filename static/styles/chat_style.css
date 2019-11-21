@@ -65,6 +65,10 @@
     cursor: pointer;
 }
 
+.createChannelBtn{
+  margin-top: 0.15rem;
+}
+
 
 #rightside-pannel {
     overflow: hidden;
