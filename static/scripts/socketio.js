@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollDownChatWindow();
     });
 
-    // Select a room
+    // Toggle room logic
+    // TODO: have newroom equal home input
     document.querySelectorAll('.select-room').forEach(p => {
         p.onclick = () => {
             let newRoom = p.innerHTML

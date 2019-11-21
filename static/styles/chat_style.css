@@ -58,6 +58,10 @@
     cursor: pointer;
 }
 
+.channel-input-field{
+  width: 300px;
+}
+
 .createChannelForm{
   padding-top: 15%;
 }

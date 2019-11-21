@@ -2,7 +2,6 @@
 {% macro displayField(field, fieldName) %}
     <div class="form-group">
         {{ field(class_='form-control', placeholder=fieldName, **kwargs) }}
-        <!-- Error messages -->
         <ul class="formError">
             {% for error in field.errors %}
                 <li>{{ error }}</li>

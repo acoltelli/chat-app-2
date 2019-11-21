@@ -38,10 +38,10 @@
                 <div class="createChannelForm" id="rightside-pannel">
                   <form method="POST">
                       {{ form.hidden_tag() }}
-                      {{ form.room.label }}: {{ form.room(class="form-control form-control-sm") }}
-                      {% for error in form.room.errors %}
-                      <span>{{ error }}</span>
-                      {% endfor %}
+                      {{ form.room.label }}: {{ form.room(class="form-control form-control-sm col-md-6") }}
+                        {% for error in form.room.errors %}
+                          <span>{{ error }}</span>
+                        {% endfor %}
                       {{ form.submit(class="btn btn-light") }}
                   </form>
                 </div>
