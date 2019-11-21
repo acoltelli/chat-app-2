@@ -4,13 +4,13 @@
 }
 
 #main-section {
-    overflow: hidden; /* Makee this div contain its floated children */
+    overflow: hidden;
     width: 100%;
 }
 
 #sidebar {
     margin-top: 2em;
-    float: left; /* Make this div as wide as its contents */
+    float: left;
     min-height: 96vh;
     padding-left: 1em;
     padding-top: 3em;
@@ -54,20 +54,23 @@
     }
 }
 
-
 .cursor-pointer {
     cursor: pointer;
 }
 
+.createChannelForm{
+  padding-top: 15%;
+}
+
 #rightside-pannel {
-    overflow: hidden; /* Make this div take up the rest of the horizontal space, and no more */
+    overflow: hidden;
 }
 
 #display-message-section {
     margin-top: 5em;
     min-height: 82vh;
     max-height: 82vh;
-    overflow-y: auto; /*Make  this section scrolable */
+    overflow-y: auto;
 }
 
 #input-area {
@@ -95,7 +98,6 @@ input[type=text]:focus{
     border-width: 0.5px;
     border-style: solid;
     background-color: #C2DBFB;
-    /* animation */
     animation-name: fadeIn;
     animation-duration: 0.75s;
     animation-fill-mode: forwards;
@@ -110,7 +112,6 @@ input[type=text]:focus{
     border-color: #206ED2;
     border-width: 1px;
     border-style: solid;
-    /* animation */
     animation-name: fadeIn;
     animation-duration: 0.75s;
     animation-fill-mode: forwards;

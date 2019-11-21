@@ -8,7 +8,6 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/chat_style.css') }}">
     </head>
     <body>
-
         <div class="wrapper">
             <nav class="navbar navbar-expand-sm navbar-light fixed-top" style="background-color: #66a1ee">
                 <div class="container-fluid">
@@ -35,7 +34,18 @@
                         <p id="{{ room|title }}" class="select-room cursor-pointer">{{ room|title }}</p>
                     {% endfor %}
                 </nav>
-              
+
+                <div class="createChannelForm" id="rightside-pannel">
+                  <form method="POST">
+                      {{ form.hidden_tag() }}
+                      {{ form.room.label }}: {{ form.room(class="form-control form-control-sm") }}
+                      {% for error in form.room.errors %}
+                      <span>{{ error }}</span>
+                      {% endfor %}
+                      {{ form.submit(class="btn btn-light") }}
+                  </form>
+                </div>
+
             </div>
         </div>
         <span id="get-username">{{ username }}</span>

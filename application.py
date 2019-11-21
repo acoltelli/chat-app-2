@@ -47,15 +47,16 @@ def home():
     if not current_user.is_authenticated:
         flash('Please login', 'danger')
         return redirect(url_for('login'))
-    form = CreateChannel()
-    if form.validate_on_submit():
-        if form.room.data not in ROOMS:
-            ROOMS.append(form.room.data)
-            return redirect(url_for('.chat'))
-        flash('That channel already exists', 'danger')
+    else:
+        form = CreateChannel()
+        if form.validate_on_submit():
+            if form.room.data not in ROOMS:
+                ROOMS.append(form.room.data)
+                return redirect(url_for('chat'))
+            flash('That channel already exists', 'danger')
 
 
-    return render_template("home.html", username=current_user.username, rooms=ROOMS)
+    return render_template("home.html", form=form, username=current_user.username, rooms=ROOMS)
 
 
 
