@@ -3,7 +3,6 @@
 }
 
 #main-section {
-    overflow: hidden;
     width: 100%;
 }
 
@@ -26,10 +25,14 @@
     background-color: #ffc107;
 }
 
-#sidebar h4 {padding-left: 0.5em;}
+#sidebar h4 {
+  padding-left: 0.5em;
+}
 
 
-#sidebar.view-sidebar {display: none;}
+#sidebar.view-sidebar {
+  display: none;
+}
 
 #show-sidebar-button {
     visibility: hidden;
@@ -59,6 +62,7 @@
 
 .createChannelForm{
   padding-top: 10%;
+  padding-left: 3px;
 }
 
 #rightside-pannel {
