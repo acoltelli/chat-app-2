@@ -25,6 +25,11 @@ def load_user(id):
 socketio = SocketIO(app, manage_session=False)
 ROOMS = ["general", "test"]
 
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()
+
+
 # Routes
 @app.route("/", methods=['GET', 'POST'])
 def index():
