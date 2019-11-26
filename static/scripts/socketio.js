@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// sidebar collapse
+// UX: sidebar collapse
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#show-sidebar-button').onclick = () => {
         document.querySelector('#sidebar').classList.toggle('view-sidebar');

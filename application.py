@@ -6,13 +6,12 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, join_room, leave_room, send
 
 
-
-
 app = Flask(__name__)
 app.secret_key=os.environ.get('SECRET')
 app.config['WTF_CSRF_SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08\xaa"
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 from models import User
 from forms import *
@@ -65,12 +64,12 @@ def home():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    login_form = LoginForm()
-    if login_form.validate_on_submit():
-        user_object = User.query.filter_by(username=login_form.username.data).first()
+    form = LoginForm()
+    if form.validate_on_submit():
+        user_object = User.query.filter_by(username=form.username.data).first()
         login_user(user_object)
         return redirect(url_for('chat'))
-    return render_template("login.html", form=login_form)
+    return render_template("login.html", form=form)
 
 
 @app.route("/chat", methods=['GET', 'POST'])
