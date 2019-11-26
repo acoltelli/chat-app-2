@@ -1,10 +1,11 @@
 import os
 import time
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, join_room, leave_room, send
-from forms import *
-from models import *
+
+
 
 
 app = Flask(__name__)
@@ -13,8 +14,9 @@ app.config['WTF_CSRF_SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+from models import User
+from forms import *
 
-# Initialize login manager
 login = LoginManager(app)
 login.init_app(app)
 
@@ -24,11 +26,6 @@ def load_user(id):
 
 socketio = SocketIO(app, manage_session=False)
 ROOMS = ["general", "test"]
-
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    db.session.remove()
-
 
 # Routes
 @app.route("/", methods=['GET', 'POST'])
@@ -74,9 +71,6 @@ def login():
         login_user(user_object)
         return redirect(url_for('chat'))
     return render_template("login.html", form=login_form)
-
-
-
 
 
 @app.route("/chat", methods=['GET', 'POST'])
